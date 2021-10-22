@@ -23,7 +23,6 @@
 #' @import monocle
 #' @import SCENIC
 #' @import GSEABase
-#' @import VGAM
 #' @import reticulate
 #' @import doParallel
 #' @import BiocGenerics
