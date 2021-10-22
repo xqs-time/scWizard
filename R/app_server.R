@@ -307,6 +307,7 @@ app_server <- function( input, output, session ) {
   #cell annotion
   if(!file.exists(system.file("miniconda", package='scWizard')))
   {
+    dir.create(paste0(system.file("", package='scWizard'),'/miniconda'))
     conda_path = system.file("miniconda", package='scWizard')
     cellphonedb_path = system.file("app/www/CellPhoneDB-2.1.4.tar.gz", package='scWizard')
     install_miniconda(path = conda_path)
