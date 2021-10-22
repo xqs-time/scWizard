@@ -22,7 +22,6 @@ Imports:
     golem,
     ggplot2,
     Matrix,
-    monocle (== 2.18.0),
     patchwork,
     pheatmap,
     SCENIC,
