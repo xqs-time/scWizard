@@ -336,14 +336,14 @@ app_server <- function( input, output, session ) {
   AnnotionReactive <- eventReactive(input$startAnnotion, {
     withProgress(message = "Processing,please wait",{
       
-      source_python('./virtual_python_env/BP3.py')
+      source_python(system.file("python/BP3.py", package='scWizard'))
       data_rds = inputDataReactive()$data
       
       shiny::setProgress(value = 0.4, detail = "Calculating ...")
-      X_total=read.csv('app/www/example/trainx.csv')
+      X_total=read.csv(system.file('app/www/example/trainx.csv', package='scWizard'))
       row.names(X_total)=X_total$X
       X_total$X=NULL
-      Y_total=read.csv('app/www/example/trainy.csv')
+      Y_total=read.csv(system.file('app/www/example/trainy.csv', package='scWizard'))
       Y_total$X=NULL
       colnames(Y_total)=c('celltype')
       num_classes = length(unique(Y_total$celltype))
@@ -455,14 +455,14 @@ app_server <- function( input, output, session ) {
   SubannotionReactive <- eventReactive(input$startSubannotion, {
     withProgress(message = "Processing,please wait",{
       
-      source_python('./virtual_python_env/BP5.py')
+      source_python(system.file("python/BP5.py", package='scWizard'))
       data_rds = ClassificationReactive()$tmp_data
       
       shiny::setProgress(value = 0.4, detail = "Calculating ...")
-      X_total=read.csv('app/www/example/trainx.csv')
+      X_total=read.csv(system.file('app/www/example/trainx.csv', package='scWizard'))
       row.names(X_total)=X_total$X
       X_total$X=NULL
-      Y_total=read.csv('app/www/example/trainy.csv')
+      Y_total=read.csv(system.file('app/www/example/trainy.csv', package='scWizard'))
       Y_total$X=NULL
       colnames(Y_total)=c('celltype')
       num_classes = length(unique(Y_total$celltype))
