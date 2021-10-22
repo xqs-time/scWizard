@@ -308,7 +308,7 @@ app_server <- function( input, output, session ) {
   if(!file.exists('/miniconda'))
   {
     conda_path = paste0(getwd(),'/miniconda')
-    cellphonedb_path = paste0(getwd(),'/CellPhoneDB-2.1.4.tar.gz')
+    cellphonedb_path = './inst/app/www/CellPhoneDB-2.1.4.tar.gz'
     install_miniconda(path = conda_path)
     conda_install(envname = 'r-reticulate', packages = 'rpy2==3.4.2', pip = T)
     conda_install(envname = 'r-reticulate', packages = cellphonedb_path, pip = T)

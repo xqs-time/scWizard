@@ -49,7 +49,7 @@ app_ui <- function(request) {
                     
                     box(title = "User Guide", width = 11, solidHeader = T, status = "primary",
                         column(12,
-                               includeMarkdown("intro.Rmd")
+                               includeMarkdown("./inst/app/www/intro.Rmd")
                         )
                     )
                   )
