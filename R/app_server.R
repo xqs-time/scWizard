@@ -306,7 +306,7 @@ app_server <- function( input, output, session ) {
   )
   
   # cell annotion
-  if(file.exists('/miniconda'))
+  if(!file.exists('/miniconda'))
   {
     conda_path = paste0(getwd(),'/miniconda')
     cellphonedb_path = paste0(getwd(),'/CellPhoneDB-2.1.4.tar.gz')
