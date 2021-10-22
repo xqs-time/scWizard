@@ -15,7 +15,6 @@ Imports:
     BiocGenerics,
     GSEABase,
     golem,
-    shiny,
     doParallel,
     dplyr,
     DT,
@@ -27,17 +26,19 @@ Imports:
     monocle,
     patchwork,
     pheatmap,
-    reticulate,
     SCENIC,
     Seurat,
+    shiny,
     shinyBS,
     shinycssloaders,
     shinydashboard,
     shinyFiles,
     shinyjs,
+    sodium,
     Rcpp (>= 1.0.7),
-    harmony,
-    sodium
+    reticulate,
+    harmony
+
 biocViews:
 Encoding: UTF-8
 LazyData: true
