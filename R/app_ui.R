@@ -35,13 +35,13 @@ app_ui <- function(request) {
       ),
       dashboardBody(
         shinyjs::useShinyjs(),
-        extendShinyjs(script = "./inst/app/www/custom.js", functions = c("winprint")),
+        extendShinyjs(script = "app/www/custom.js", functions = c("winprint")),
         tags$head(
           tags$style(HTML(
             " .shiny-output-error-validation {color: darkred; } "
           )),
-          tags$link(rel = "stylesheet", type = "text/css", href = "./inst/app/www/custom.css"),
-          tags$link(rel = "stylesheet", type = "text/css", href = "./inst/app/www/buttons.css")
+          tags$link(rel = "stylesheet", type = "text/css", href = "app/www/custom.css"),
+          tags$link(rel = "stylesheet", type = "text/css", href = "app/www/buttons.css")
         ),
         tabItems(
           tabItem(tabName = "introTab",
@@ -49,7 +49,7 @@ app_ui <- function(request) {
                     
                     box(title = "User Guide", width = 11, solidHeader = T, status = "primary",
                         column(12,
-                               includeMarkdown("./inst/app/www/intro.Rmd")
+                               includeMarkdown("app/www/intro.Rmd")
                         )
                     )
                   )
@@ -651,13 +651,13 @@ app_ui <- function(request) {
 golem_add_external_resources <- function(){
   
   add_resource_path(
-    'www', app_sys('./inst/app/www')
+    'www', app_sys('app/www')
   )
  
   tags$head(
     favicon(),
     bundle_resources(
-      path = app_sys('./inst/app/www'),
+      path = app_sys('app/www'),
       app_title = 'scWizard'
     )
     # Add here other external resources

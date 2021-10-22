@@ -46,7 +46,7 @@ app_server <- function( input, output, session ) {
     # )
     
     if (input$data_file_type == "data_example") {
-      inFile="./inst/app/www/example/data_300cell.RDS"
+      inFile="app/www/example/data_300cell.RDS"
     }
     else{
       inFile = input$datafile
@@ -308,7 +308,7 @@ app_server <- function( input, output, session ) {
   if(!file.exists('/miniconda'))
   {
     conda_path = paste0(getwd(),'/miniconda')
-    cellphonedb_path = './inst/app/www/CellPhoneDB-2.1.4.tar.gz'
+    cellphonedb_path = 'app/www/CellPhoneDB-2.1.4.tar.gz'
     install_miniconda(path = conda_path)
     conda_install(envname = 'r-reticulate', packages = 'rpy2==3.4.2', pip = T)
     conda_install(envname = 'r-reticulate', packages = cellphonedb_path, pip = T)
@@ -339,10 +339,10 @@ app_server <- function( input, output, session ) {
       data_rds = inputDataReactive()$data
       
       shiny::setProgress(value = 0.4, detail = "Calculating ...")
-      X_total=read.csv('./inst/app/www/example/trainx.csv')
+      X_total=read.csv('app/www/example/trainx.csv')
       row.names(X_total)=X_total$X
       X_total$X=NULL
-      Y_total=read.csv('./inst/app/www/example/trainy.csv')
+      Y_total=read.csv('app/www/example/trainy.csv')
       Y_total$X=NULL
       colnames(Y_total)=c('celltype')
       num_classes = length(unique(Y_total$celltype))
@@ -458,10 +458,10 @@ app_server <- function( input, output, session ) {
       data_rds = ClassificationReactive()$tmp_data
       
       shiny::setProgress(value = 0.4, detail = "Calculating ...")
-      X_total=read.csv('./inst/app/www/example/trainx.csv')
+      X_total=read.csv('app/www/example/trainx.csv')
       row.names(X_total)=X_total$X
       X_total$X=NULL
-      Y_total=read.csv('./inst/app/www/example/trainy.csv')
+      Y_total=read.csv('app/www/example/trainy.csv')
       Y_total$X=NULL
       colnames(Y_total)=c('celltype')
       num_classes = length(unique(Y_total$celltype))
