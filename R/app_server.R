@@ -304,20 +304,20 @@ app_server <- function( input, output, session ) {
       dev.off()}
   )
   
-  # cell annotion
-  # if(!file.exists('/miniconda'))
-  # {
-  #   conda_path = paste0(getwd(),'/miniconda')
-  #   cellphonedb_path = 'app/www/CellPhoneDB-2.1.4.tar.gz'
-  #   install_miniconda(path = conda_path)
-  #   conda_install(envname = 'r-reticulate', packages = 'rpy2==3.4.2', pip = T)
-  #   conda_install(envname = 'r-reticulate', packages = cellphonedb_path, pip = T)
-  #   conda_install(envname = 'r-reticulate', packages = 'scikit-learn==0.22', pip = T)
-  #   conda_install(envname = 'r-reticulate', packages = 'tensorflow-gpu==2.4.1', pip = T)
-  # }
-  # #reticulate::use_miniconda('./miniconda', required = F)
-  # reticulate::use_python('./miniconda/r-reticulate', required = F)
-  # py_config()
+  #cell annotion
+  if(!file.exists(system.file("miniconda", package='scWizard')))
+  {
+    conda_path = system.file("miniconda", package='scWizard')
+    cellphonedb_path = system.file("app/www/CellPhoneDB-2.1.4.tar.gz", package='scWizard')
+    install_miniconda(path = conda_path)
+    conda_install(envname = 'r-reticulate', packages = 'rpy2==3.4.2', pip = T)
+    conda_install(envname = 'r-reticulate', packages = cellphonedb_path, pip = T)
+    conda_install(envname = 'r-reticulate', packages = 'scikit-learn==0.22', pip = T)
+    conda_install(envname = 'r-reticulate', packages = 'tensorflow-gpu==2.4.1', pip = T)
+  }
+  #reticulate::use_miniconda('./miniconda', required = F)
+  reticulate::use_python(system.file("miniconda/r-reticulate", package='scWizard'), required = F)
+  py_config()
   observe({
     
     if(!is.null(inputDataReactive()))

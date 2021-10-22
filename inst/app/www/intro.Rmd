@@ -23,7 +23,7 @@ See **Figure 1** below for a diagram that outlines all the workflow steps and th
 <p style="width: 100%;max-width:300px;margin: 10px auto;display: block;"><strong><em>Figure 1: Workflow (Click figure to enlarge)</em></strong></p>
 <a href="#" class="pop">
     <div class="BoxArea4" style="width: 100%;max-width:300px;margin: 0 auto;display: block;">
-    <img src="./inst/app/www/Single-cellAnalysisWorkflow.png" alt="Workflow" style="width: 100%;max-width:300px;margin: 0 auto;display: block;"/>
+    <img src="app/www/Single-cellAnalysisWorkflow.png" alt="Workflow" style="width: 100%;max-width:300px;margin: 0 auto;display: block;"/>
     </div>
 </a>
 
