@@ -703,7 +703,12 @@ app_server <- function( input, output, session ) {
         #cur_celltype = data_rds@meta.data$pred_cell[1]
         cur_celltype = input$celltype1
         source_python(system.file("app/www/python/BP5_new.py", package='scWizard'))
-        if(cur_celltype == 'End')
+        if(input$ownstrainset1)
+        {
+          X_total_path=input$trainset1$datapath
+          Y_total=read.csv(input$trainlabel1$datapath)
+        }
+        else if(cur_celltype == 'End')
         {
           X_total_path=system.file('app/www/python/trainset/trainx_End.h5', package='scWizard')
           Y_total=read.csv(system.file('app/www/python/trainset/trainy_End.csv', package='scWizard'))
@@ -728,7 +733,7 @@ app_server <- function( input, output, session ) {
           X_total_path=system.file('app/www/python/trainset/trainx_CD4T.h5', package='scWizard')
           Y_total=read.csv(system.file('app/www/python/trainset/trainy_CD4T.csv', package='scWizard'))
         }
-        else
+        else if(cur_celltype == 'CD8T')
         {
           X_total_path=system.file('app/www/python/trainset/trainx_CD8T.h5', package='scWizard')
           Y_total=read.csv(system.file('app/www/python/trainset/trainy_CD8T.csv', package='scWizard'))
@@ -1249,9 +1254,17 @@ app_server <- function( input, output, session ) {
           data_rds = inputDataReactive()$data
         }
         shiny::setProgress(value = 0.4, detail = "Calculating ...")
-        counts_file = paste0(as.character(parseDirPath(volumes, input$cellphonedbin)), "/count.txt")
-        meta_file = paste0(as.character(parseDirPath(volumes, input$cellphonedbin)), "/meta.txt")
-        #dir.create("cellphonedb_in")
+        
+        counts_file = "./cellphonedb_in/count.txt"
+        meta_file = "./cellphonedb_in/meta.txt"
+        #counts_file = paste0(as.character(parseDirPath(volumes, input$cellphonedbin)), "/count.txt")
+        #meta_file = paste0(as.character(parseDirPath(volumes, input$cellphonedbin)), "/meta.txt")
+        
+        if(!dir.exists('cellphonedb_in'))
+          dir.create("cellphonedb_in")
+        if(!dir.exists('cellphonedb_out'))
+          dir.create("cellphonedb_out")
+        
         count_data = as.matrix(data_rds@assays$RNA@counts)
         write.table(as.matrix(count_data), counts_file, sep='\t', quote=F)
         cellalltype = as.vector(data_rds@active.ident)
@@ -1260,7 +1273,7 @@ app_server <- function( input, output, session ) {
         meta_data <- as.matrix(meta_data)
         meta_data[is.na(meta_data)] = "Unkown"
         write.table(meta_data, meta_file, sep='\t', quote=F, row.names=F)
-        out_file = as.character(parseDirPath(volumes, input$cellphonedbout))
+        out_file = "./cellphonedb_out" #as.character(parseDirPath(volumes, input$cellphonedbout))
         counts_data = input$countsdata
         command = paste("cellphonedb method statistical_analysis",meta_file)
         command = paste(command,counts_file)
@@ -1269,7 +1282,7 @@ app_server <- function( input, output, session ) {
         command = paste(command,"--counts-data=")
         command = paste0(command,counts_data)
         command = paste(command,"--threads=")
-        command = paste0(command,10)
+        command = paste0(command,input$thread_num)
         print(command)
         os = import("os")
         os$system(command)

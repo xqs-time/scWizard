@@ -316,8 +316,16 @@ app_ui <- function(request) {
                                                                          column(4,numericInput("layer2_3", "Number of hidden layer3 nodes", value = 25)),
                                                                          column(4,numericInput("regularization2", "Regularization rate", value = 0.05)),
                                                                          column(4,numericInput("PCAk2", "PCA.k", value = 2000)),
+                                                                         column(4, checkboxInput("ownstrainset1","Use Custom Trainset"), value = FALSE),
                                                                          div(style = "clear:both;"),
                                                                          actionButton("startSubannotion","start Subannotion",class = "button button-3d button-block button-pill button-primary button-large", style = "width: 100%")
+                                                                       ),
+                                                                       conditionalPanel("input.ownstrainset1",
+                                                                                        wellPanel(
+                                                                                          column(6,fileInput('trainset1', 'Choose custom trainset', multiple = TRUE)),
+                                                                                          column(6,fileInput('trainlabel1', 'Choose custom label for trainset', multiple = TRUE)),
+                                                                                          div(style = "clear:both;")
+                                                                                        )
                                                                        ),
                                                                        conditionalPanel("output.SubannotionAvailable",
                                                                                         downloadButton('downloadSubannotionPlot','Save Results as Plot File', class = "btn btn-primary"),
@@ -686,16 +694,16 @@ app_ui <- function(request) {
                                                                          column(4,selectInput("countsdata", "counts-data",
                                                                                               choices = c("ensembl","gene_name", "hgnc_symbol")
                                                                                               , selected = "gene_name")),
-                                                                         
-                                                                         column(4,shinyDirButton("cellphonedbin", "Choose a cellphonedbin_folder" ,
-                                                                                                 title = "",
-                                                                                                 buttonType = "default", class = NULL,
-                                                                                                 icon = icon("folder", lib = "font-awesome"), multiple = TRUE)),
-                                                                         column(4,shinyDirButton("cellphonedbout", "Choose a cellphonedbout_folder" ,
-                                                                                                 title = "",
-                                                                                                 buttonType = "default", class = NULL,
-                                                                                                 icon = icon("folder", lib = "font-awesome"), multiple = TRUE)),
-                                                                         
+                                                                         column(4,numericInput("thread_num", "thread_num", value = 10)),
+                                                                         # column(4,shinyDirButton("cellphonedbin", "Choose a cellphonedbin_folder" ,
+                                                                         #                         title = "",
+                                                                         #                         buttonType = "default", class = NULL,
+                                                                         #                         icon = icon("folder", lib = "font-awesome"), multiple = TRUE)),
+                                                                         # column(4,shinyDirButton("cellphonedbout", "Choose a cellphonedbout_folder" ,
+                                                                         #                         title = "",
+                                                                         #                         buttonType = "default", class = NULL,
+                                                                         #                         icon = icon("folder", lib = "font-awesome"), multiple = TRUE)),
+                                                                         # 
                                                                          div(style = "clear:both;"),
                                                                          actionButton("startcellphonedb","Start CellphoneDB",class = "button button-3d button-block button-pill button-primary button-large", style = "width: 100%")
                                                                        ),
