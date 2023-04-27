@@ -681,9 +681,7 @@ app_ui <- function(request) {
                                            p("CellPhoneDB is a publicly available repository of curated receptors, ligands and their interactions. Subunit architecture is included for both ligands and receptors, representing heteromeric complexes accurately. This is crucial, as cell-cell communication relies on multi-subunit protein complexes that go beyond the binary representation used in most databases and studies."),
                                            p("Introduction parameters:"),
                                            p("-countsdata: Type of gene identfiers in counts data"),
-                                           p("-cellphonedbin: Select inputfile location"),
-                                           p("-cellphonedbin: Select outputfile location"),
-                                           
+                                           p("-thread_num: Select number of workers"),
                                            tabsetPanel(type = "tabs",
                                                        tabPanel("CellphoneDB",
                                                                 

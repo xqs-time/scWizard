@@ -1341,8 +1341,8 @@ app_server <- function( input, output, session ) {
         }
         else if(input$methodsUsed=='CellphoneDB')
         {
-          source("plot_heatmap.R", local = TRUE)
-          source("plot_dot.R", local = TRUE)
+          source(system.file('app/www/R/plot_heatmap.R', package='scWizard'), local = TRUE)
+          source(system.file('app/www/R/plot_dot.R', package='scWizard'), local = TRUE)
           pval = input$plotfile1$datapath
           if(input$Gragh=='heatmap1')
           {
@@ -1397,7 +1397,7 @@ app_server <- function( input, output, session ) {
       },
       error=function(cond) {
         message("Here's the original error.")
-        message(cond)
+        #message(cond)
         return(NULL)
       })
     })
